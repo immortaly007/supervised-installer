@@ -21,7 +21,7 @@ command -v systemctl > /dev/null 2>&1 || error "Only systemd is supported!"
 command -v docker > /dev/null 2>&1 || error "Please install docker first"
 command -v jq > /dev/null 2>&1 || error "Please install jq first"
 command -v curl > /dev/null 2>&1 || error "Please install curl first"
-command -v avahi-daemon > /dev/null 2>&1 || error "Please install avahi first"
+command systemctl is-active --quiet avahi-daemon > /dev/null 2>&1 || { echo "[Error] Please install avahi first"; exit 1; }
 command -v dbus-daemon > /dev/null 2>&1 || error "Please install dbus first"
 command -v nmcli > /dev/null 2>&1 || warn "No NetworkManager support on host."
 command -v apparmor_parser > /dev/null 2>&1 || warn "No AppArmor support on host."
